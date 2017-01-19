@@ -1,0 +1,34 @@
+    <div ng-show="user" class="right_side_user_logined text-center box_shadow_top">
+        <img class="img-responsive" ng-src="{{skin.userBg}}" alt="">
+        <div>
+            <a href="/users?username={{user.username}}">
+                <p><img class="user_logo img-circle" ng-src="{{user.logo}}" alt=""></p>
+                <p class="padding_top padding_bottom">{{user.username}}</p>
+            </a>
+        </div>
+        <div class="row padding_top padding_bottom">
+            <a href="" ng-cloak class="col-md-4">原创{{user.articlesNum}}</a>
+            <a href="" ng-cloak class="col-md-4">转发{{user.copyArticlesNum}}</a>
+            <a href="" ng-cloak class="col-md-4">收藏{{user.collectArticlesNum}}</a>
+        </div>
+    </div>
+    <div ng-hide="user" class="right_side_user_login box_shadow_top" ng-controller="rightSideUserLogin">
+        <h4 class="login_title text-center">账号登录</h4>
+        <p class="text-danger" ng-cloak>{{ errors }}</p>
+        <form name="loginForm" ng-submit="rightSideLoginForm(loginForm.$valid)" novalidate>
+            <div class="error_message"><p class=" text-danger" ng-cloak ng-show="loginForm.email.$invalid && !loginForm.email.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写正确的邮箱地址</p></div>
+            <div class="input-group ">
+                <label class="input-group-addon "><i class="glyphicon glyphicon-user"></i></label>
+                <input type="email" name="email" class="form-control" ng-model="loginFormData.email" ng-pattern="/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/" placeholder="请输入邮箱" required>
+            </div>
+            <div class="error_message"><p class="text-danger" ng-cloak ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 6-12位，只包含字母、数字和下划线</p></div>
+            <div class="input-group ">
+                <label class="input-group-addon "><i class="glyphicon glyphicon-lock"></i></label>
+                <input type="password" name="password" class="form-control" ng-model="loginFormData.password" ng-pattern="/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/" ng-maxlength="12" placeholder="请输入密码" required>
+            </div>
+            <div class="form-group ">
+                <input type="submit" ng-cloak class="btn btn-warning btn-block loginBtn" ng-disabled="loginForm.$invalid" value="登录">
+            </div>
+            <p class="error_message">还没有账号?请先<a href="/users/register">注册</a>后登陆</p>
+        </form>
+    </div>

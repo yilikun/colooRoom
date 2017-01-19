@@ -1,0 +1,6 @@
+<div class="padding tags box_shadow_top" ng-controller="tagsCtrl">
+    <h4 class="margin_bottom">COLOO:最近文章标签</h4>
+    <span class="margin_bottom" ng-repeat="tags in allTags">
+        <a class="margin_right tags_tag" href="javascript:void(0)" ng-cloak ng-click="getArticlesByTag(tag)" ng-repeat="tag in tags.tags">{{tag}}</a>
+    </span>
+</div>

@@ -1,0 +1,74 @@
+<% include public/header.ejs %>
+
+    <% include public/nav.ejs %>
+
+<div class="container diary_container margin_bottom" ng-app="editDiaryApp">
+    <h1 class="title">COLOO:分享你的精彩生活</h1>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 diary_content" ng-controller="diaryEditCtrl">
+            <form class="form-horizontal" name="diaryEditForm" ng-submit="processDiaryPostForm(diaryEditForm.$valid)" novalidate>
+                <!--错误信息提示-->
+                <h3 style="margin: 10px 0;" class="text-center">日志编辑</h3>
+                <p class="text-center text-danger" ng-cloak id="errorInfo">{{regErrors}}</p>
+                <!--日志标题-->
+                <p class="text-center text-danger" ng-cloak ng-show="diaryEditForm.title.$invalid && !diaryEditForm.title.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入文章标题</p>
+                <div class="form-group">
+                    <label for="inputTitle" class="col-sm-2 col-sm-offset-1 control-label">标题:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="title" class="form-control" id="inputTitle" ng-disabled="disEdit" ng-model="diaryEditData.title" placeholder="日志标题" required>
+                    </div>
+                </div>
+                <!--日志标签-->
+                <p class="text-center text-danger" ng-cloak  ng-show="diaryEditForm.tag1.$invalid && !diaryEditForm.tag1.$pristine"><i class="glyphicon glyphicon-info-sign"></i>至少输入一个标签,长度不能超过4个字符</p>
+                <div class="form-group">
+                    <label for="inputTag" class="col-sm-2 col-xs-12 col-sm-offset-1 control-label">标签:</label>
+                    <div class="col-sm-2 col-xs-4">
+                        <input type="text" name="tag1" class="form-control" id="inputTag" disabled ng-model="diaryEditData.tags[0]" ng-maxlength="4" required>
+                    </div>
+                    <div class="col-sm-2 col-xs-4">
+                        <input type="text" name="tag2" class="form-control" disabled ng-model="diaryEditData.tags[1]" ng-maxlength="4" >
+                    </div>
+                    <div class="col-sm-2 col-xs-4">
+                        <input type="text" name="tag3" class="form-control" disabled ng-model="diaryEditData.tags[2]" ng-maxlength="4" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 col-xs-12 col-sm-offset-1 control-label">类型:</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" ng-disabled="disEdit" ng-cloak name="state">
+                            <option ng-show="zz" value="{{diaryEditData.state}}" checked="checked">{{diaryEditData.state ? '公开' : '仅自己可见'}}</option>
+                            <option ng-repeat="state in states" value="{{state.type}}">{{state.value}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!--日志内容-->
+                <p class="text-center text-danger" ng-cloak ng-show="diaryEditForm.content.$invalid && !diaryEditForm.content.$pristine"><i class="glyphicon glyphicon-info-sign"></i>发表内容不能为空</p>
+                <div class="form-group">
+                    <label for="inputContent" class="col-sm-2 col-sm-offset-1 control-label">内容:</label>
+                    <div class="col-sm-6">
+                        <textarea name="content" class="form-control" id="inputContent" rows="15" ng-disabled="disEdit" ng-model="diaryEditData.content" required placeholder="分享点什么吧"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-6">
+                        <div class="checkbox">
+                            <label>
+                                <input ng-disabled="disEdit" type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center col-sm-offset-3 col-sm-1 col-xs-6">
+                        <button type="submit" class="btn btn-default" ng-disabled="diaryEditForm.$invalid || disEdit">保存</button>
+                    </div>
+                    <div class="text-center col-sm-1 col-xs-6">
+                        <button type="button" class="btn btn-danger" ng-click="edit()">修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include public/footer.ejs %>

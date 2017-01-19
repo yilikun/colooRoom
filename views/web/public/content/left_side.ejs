@@ -1,0 +1,12 @@
+<ul class="list_left" ng-controller="leftSideCtrl">
+    <li><a ng-class="{true:'active'}[isIndex]" href="/">首页</a></li>
+    <li><a href="javascript:void(0)" ng-class="{true:'active'}[isTalking]" ng-mousedown="isTalking=true;isIndex=false;doLogin=false;isDiary=false;doLogout=false;doReg=false" ng-click="getArticles('说说')">说说</a></li>
+    <li><a href="javascript:void(0)" ng-class="{true:'active'}[isDiary]" ng-mousedown="isDiary=true;isIndex=false;isTalking=false;doLogin=false;doLogout=false;doReg=false" ng-click="getArticles('日志')">日志</a></li>
+    <% if(user) { %>
+    <li><a href="/postDiary" ng-class="{true:'active'}[postDiary]" >发布</a></li>
+    <li><a href="javascript:void(0);" ng-class="{true:'active'}[doLogout]" ng-mousedown="doLogout=true;isIndex=false;isTalking=false;isDiary=false;doLogin=false;doReg=false" ng-click="logout()">退出</a></li>
+    <% } else { %>
+    <li><a href="javascript:void(0);" ng-class="{true:'active'}[doLogin]" ng-mousedown="doLogin=true;isIndex=false;isTalking=false;isDiary=false;doLogout=false;doReg=false" data-toggle="modal" data-target="#loginModal">登录</a></li>
+    <li><a href="javascript:void(0);" ng-class="{true:'active'}[doReg]" ng-mousedown="doReg=true;isIndex=false;isTalking=false;isDiary=false;doLogout=false;doLogin=false" ng-click="register()">注册</a></li>
+    <% } %>
+</ul>

@@ -1,0 +1,15 @@
+<main class="container index_container" style="background-color: {{skin.mainBgc}};">
+    <div class="row" ng-controller="bodyCtrl">
+
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 col">
+            <%- include content/left_side.ejs %>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-9 col-xs-12 col" ng-controller="mainArticlesCtrl">
+            <% include content/talkingPostForm.ejs %>
+            <% include content/main.ejs %>
+        </div>
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs col">
+            <%- include content/right_side.ejs%>
+        </div>
+    </div>
+</main>

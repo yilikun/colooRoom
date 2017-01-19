@@ -1,0 +1,180 @@
+/*样式格式化*/
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #333333;
+}
+a:hover {
+    text-decoration: none;
+    color: orangered;
+}
+h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+}
+ul,li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+span {
+    display: inline-block;
+}
+/*一些公共的样式*/
+/*------内边距------*/
+.none_padding {
+    padding:0;
+}
+.none_padding_top {
+    padding-top: 0;
+}
+.none_padding_right {
+    padding-right: 0;
+}
+.none_padding_bottom {
+    padding-bottom: 0;
+}
+.none_padding_left {
+    padding-left:0;
+}
+.padding {
+    padding:10px;
+}
+.padding_top {
+    padding-top:10px;
+}
+.padding_right {
+    padding-right: 10px;
+}
+.padding_bottom {
+    padding-bottom: 10px;
+}
+.padding_left {
+    padding-left:10px;
+}
+/*内边距15px*/
+.padding_15 {
+    padding: 15px;
+}
+.padding_top_15 {
+    padding-top: 15px;
+}
+.padding_right_15 {
+    padding-right: 15px;
+}
+.padding_bottom_15 {
+    padding-bottom: 15px;
+}
+.padding_left_15 {
+    padding-left: 15px;
+}
+
+/*------外边距------*/
+.none_margin {
+    margin:0;
+}
+.none_margin_top {
+    margin-top: 0;
+}
+.none_margin_right {
+    margin-right: 0;
+}
+.none_margin_bottom {
+    margin-bottom: 0;
+}
+.none_margin_left {
+    margin-left: 0;
+}
+.margin {
+    margin:10px;
+}
+.margin_top {
+    margin-top:10px;
+}
+.margin_right {
+    margin-right: 10px;
+}
+.margin_bottom {
+    margin-bottom:10px;
+}
+.margin_left {
+    margin-left:10px;
+}
+/*外边距15px*/
+.margin_15 {
+    margin: 15px;
+}
+.margin_top_15 {
+    margin-top: 15px;
+}
+.margin_right_15 {
+    margin-right: 15px;
+}
+.margin_bottom_15 {
+    margin-bottom: 15px;
+}
+.margin_left_15 {
+    margin-left: 15px;
+}
+/*字体颜色*/
+.color_333 {
+    color:#333333;
+}
+.color_gray {
+    color: gray;
+}
+.color_white {
+    color: white;
+}
+/*字体样式*/
+.text_600 {
+    font-weight: 600;
+}
+/*字体大小*/
+.text_large {
+    font-size: 25px;
+}
+.text_big {
+    font-size: 18px;
+}
+.text_small {
+    font-size:14px;
+}
+.text_smaller {
+    font-size: 12px;
+}
+/*阴影*/
+.box_shadow {
+    box-shadow: 0 0 2px orangered;
+}
+.box_shadow_top {
+    box-shadow: 0 -1px 2px orangered;
+}
+.box_shadow_right {
+    box-shadow: 1px 0 2px orangered;
+}
+.box_shadow_bottom {
+    box-shadow: 0 1px 2px orangered;
+}
+.box_shadow_left {
+    box-shadow: -1px 0 2px orangered;
+}
+/*溢出控制*/
+.nowrap {
+    overflow: hidden;/*文字超出部分隐藏*/
+    white-space: nowrap;/*不显示的地方用省略号代替*/
+    text-overflow:ellipsis;/*支持IE*/
+    -o-text-overflow: ellipsis;
+}
+.over_hidden {
+    overflow: hidden;
+}
+/*.min_height {*/
+/*min-height: 720px;*/
+/*}*/
+.min_article_height {
+    min-height:400px;
+}
+/*显示控制*/
+.show_hide {
+    display: none;
+}

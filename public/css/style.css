@@ -1,0 +1,274 @@
+body {
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    /*-webkit-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;*/
+
+}
+/*.index_container {*/
+    /*background-color: rgba(186,216,229,.4);*/
+/*}*/
+
+/*单独定义的样式*/
+
+/*导航栏*/
+.navbar-form {
+  padding-right: 0
+}
+.navbar-form .btn {
+  top: 0;
+  border: none;
+  left: -38px;
+  z-index:10;"
+}
+.navbar-right .modal .modal-header {
+  border-bottom:none;
+}
+.navbar-right .dropdown a {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.nav_user_img {
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+/*--------首页--------*/
+/*body内容*/
+/*中间内容块*/
+.index_container {
+  margin-top:100px;
+  /*background-color: rgba(220,220,220,.4);*/
+}
+.col {
+  padding:0;
+}
+.main_default section {
+  background-color: #fff;
+  height: 100px;
+  margin:10px 10px 10px 10px;
+}
+.main_article {
+    background-color: #fff;
+    margin:10px 10px 10px 10px;
+}
+/*说说发布模块*/
+textarea {
+    resize: none;
+}
+.talking_post {
+    margin:10px 10px 10px 10px;
+    background-color: #fff;
+    padding:10px;
+}
+.talking_post select {
+    border:none;
+    padding:5px;
+    vertical-align: middle;
+}
+/*文章内容模块*/
+.main_article .row {
+    margin:0;
+}
+.main_article .col-xs-2 {
+    padding-right:0;
+    margin-top:10px;
+}
+.main_article .col-xs-10 {
+    margin-top:10px;
+}
+.main_user_logo_logined {
+    width: 100%;
+    max-width:60px;
+    max-height: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.article_user_logo {
+    width: 80px;
+}
+/*评论内容*/
+.comment_content {
+    background-color: #F2F2F5;
+}
+.comment_user_label {
+    padding: 0 !important;
+    margin:0 !important;
+}
+.comment_user_logo {
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+}
+.commenter_logo {
+    width: 60px;
+    vertical-align: middle;
+}
+/*右边模块*/
+.right_side_default {
+  height: 200px;
+  background-color: #fff;
+  margin: 10px 10px 10px 0;
+  text-align: center;
+  line-height: 200px;
+}
+/*标签模块*/
+.tags {
+    background-color: #fff;
+    margin: 10px 10px 10px 0;
+}
+.tags_tag:hover {
+    background-color: orangered;
+    color: #ffffff;
+    text-decoration: none;
+}
+/*下载模块*/
+.download {
+    background-color: #fff;
+    margin: 10px 10px 10px 0;
+}
+.download_img {
+    width: 100%;
+}
+/*最近文章*/
+.recentArticle {
+    background-color: #fff;
+    margin: 10px 10px 10px 0;
+}
+/*用户未登录*/
+.right_side_user_login {
+    background-color: #fff;
+    margin: 10px 10px 10px 0;
+    padding:20px;
+}
+.right_side_user_login .error_message,
+.error_message{
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+.right_side_user_login .loginBtn {
+    margin-top:15px;
+}
+/*用户已经登录*/
+.right_side_user_logined {
+    margin:10px;
+    background-color: #fff;
+    margin-left:0;
+}
+.right_side_user_logined .user_logo {
+    width: 80px;
+    height: 80px;
+    margin-top:-40px;
+}
+
+
+/*左边样式*/
+.list_left {
+  margin:10px ;
+}
+.list_left a {
+  text-align: center;
+  display: block;
+  line-height: 40px;
+  color: #444444;
+}
+.list_left a.active,
+.list_left a:hover {
+  text-decoration: none;
+  background-color: #fff;
+    border-bottom: 1px solid orangered;
+    margin-bottom:-1px;
+}
+
+/*footer*/
+footer .src{
+  padding:30px 0;
+  background-color: #FFFFFF;
+}
+footer .copyright {
+  padding:30px 0;
+  background-color: #F2F2F5;
+}
+/*--------注册页面--------日志发表页面--------*/
+.reg_container .title,
+.diary_container .title {
+  text-align: center;
+  margin: 100px 0 30px 0;
+}
+.reg_content,
+.diary_content {
+  background-color: #fff;
+  padding:50px 10px;
+}
+.diary_content {
+    padding:10px 0;
+}
+/*用户页面*/
+.user_header {
+    padding-top:80px;
+    margin-bottom: -60px;
+}
+.user_header_logo_img {
+    width: 80px;
+    height: 80px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.change_logo_text {
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    margin-top:-40px;
+}
+#userUploadLogo {
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/*文章查看原文*/
+.main_article_info {
+    margin:10px;
+    background-color: #fff;
+}
+.main_article_info_title {
+    padding:50px 0 10px;
+}
+.main_article_info_info {
+    color: gray;
+}
+.main_article_info_content {
+    padding:20px;
+}
+/*底部更换皮肤*/
+.skin_bg {
+    width: 100%;
+    z-index: 10;
+    background-color: #333;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+.skin_btn {
+    position: absolute;
+    top: 50px;
+    right: 0;
+}
+.skin_title {
+    margin:10px 0 30px;
+}
+.skin_item {
+    width: 100%;
+    max-width:150px;
+    height: 80px;
+}

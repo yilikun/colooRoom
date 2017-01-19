@@ -1,0 +1,13 @@
+<main class="container index_container" style="background-color: {{skin.mainBgc}};" ng-app="userApp" >
+    <div class="row" ng-controller="userBodyCtrl">
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 col">
+            <% include content/left_side_user.ejs %>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-9 col-xs-9 col" ng-controller="userArticlesCtrl">
+            <% include content/main_user.ejs %>
+        </div>
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs col">
+            <% include content/right_side_user.ejs %>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,13 @@
+<% include public/header.ejs %>
+  <% include public/nav.ejs %>
+  <main class="container index_container margin_bottom" style="background-color: {{skin.mainBgc}};" ng-app="articleInfoApp">
+    <div class="row min_height">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col" ng-controller="articleInfoCtrl">
+          <% include public/articleInfoBody.ejs %>
+      </div>
+      <div class="col-lg-3 col-md-3 hidden-sm hidden-xs col">
+          <% include public/content/right_side_user.ejs %>
+      </div>
+    </div>
+  </main>
+<% include public/footer.ejs %>

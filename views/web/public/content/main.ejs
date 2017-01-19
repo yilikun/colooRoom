@@ -1,0 +1,112 @@
+<section ng-show="articles.length">
+
+
+<section class="main_article box_shadow" ng-cloak ng-repeat="article in articles ">
+    <div class="row padding_top_15">
+        <div class="col-sm-2 col-xs-3 text-center">
+            <div>
+                <img class="article_user_logo img-circle" ng-src="{{ article.authorLogo }}" alt="">
+            </div>
+        </div>
+        <div class=" col-sm-10 col-xs-9 none_padding_left">
+            <h4 class="margin_bottom"><a href="/users?username={{article.author}}">{{article.author}}</a></h4>
+            <p class="col-xs-6 text-left none_padding margin_bottom text_smaller color_gray">评论：{{article.commentNum}} | 查看：{{article.clickNum}}</p>
+            <p class="col-xs-6 text-right none_padding margin_bottom text_smaller color_gray" am-time-ago="article.date"></p>
+            <p class="col-xs-12 none_padding margin_bottom text_smaller color_gray" >标签：<a href="javascript:void(0)" class="margin_right color_gray" ng-click="getArticles(article.type)">{{ article.type }}</a>
+                <a href="javascript:void(0)" class="margin_right color_gray" ng-repeat="tag in article.tags " ng-click="getArticles(tag)">{{ tag }}</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <div ng-show="article.title">
+                <h3 class="margin_top margin_bottom color_333">{{ article.title }}</h3>
+                <a class="margin_top margin_bottom text_smaller color_gray" href="javascript:void(0);" ng-click="contentShow($event,article)">全文</a>
+                <p class="text-right text_smaller"><a href="/articleInfo?article_id={{article._id}}" class="color_gray">>>查看原文</a></p>
+            </div>
+            <div style="display: none" id="oneContent" class="padding_top padding_bottom">
+                <p ng-bind-html="article.content | to_trusted"></p>
+                <p ng-show="article.author === user.username" class="margin_top margin_bottom text_smaller">
+                    <a href="/editDiary?article_id={{article._id}}" class="color_gray">编辑</a>
+                    <a href="javascript:void(0)" ng-click="deleteArticle(article)" class="color_gray">删除</a>
+                </p>
+                <p class="text-right"><a href="javascript:void(0)" ng-click="closeContent($event,article)"><i class="glyphicon glyphicon-chevron-up"></i>收起</a></p>
+            </div>
+        </div>
+
+        <div ng-show="article.type == '说说'" class="col-md-10 col-md-offset-2 padding_top padding_bottom">
+            <p ng-bind-html="article.content | to_trusted"></p>
+            <p class="text-right text_smaller"><a href="/articleInfo?article_id={{article._id}}" class="color_gray">>>查看详情</a></p>
+            <p ng-show="article.author === user.username" class="margin_top margin_bottom text_smaller color_gray">
+                <a href="javascript:void(0)" class="color_gray" ng-click="editTalking($event,article)">编辑</a>
+                <a href="javascript:void(0)" ng-click="deleteArticle(article)" class="color_gray">删除</a>
+            </p>
+            <div style="display: none" id="{{article._id}}">
+                <form name="talkingEdit" ng-submit="processTalkingEdit(talkingEdit.$valid,article)" novalidate >
+                    <div class="error_message"><p class="text-danger" ng-cloak ng-show="talkingEdit.talking.$invalid && !talkingEdit.talking.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入合适长度说说内容，长度为6-100</p></div>
+                    <textarea class="form-control talking_textarea" name="talking" ng-model="editTalkingData.content" ng-minlength="6" ng-maxlength="100" rows="4" required placeholder="请输入说说内容"></textarea>
+
+                    <div class="form-group text-right">
+                        <input type="submit" class="btn btn-warning margin_top" ng-cloak ng-disabled="talkingEdit.$invalid" value="修改">
+                        <input type="button" class="btn btn-danger margin_top" ng-click="cancelEditTalking(article)" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center col-xs-12 padding_bottom padding_top" id="article_foot_bar">
+            <a class="col-xs-3 color_gray" href="javascript:void(0)" ng-click="collectArticle(article)"><i class="glyphicon glyphicon-star-empty"></i> 收藏 <em>{{article.collectNum}}</em></a>
+            <a class="col-xs-3 color_gray" href="javascript:void(0)" ng-click="copyArticle(article)"><i class="glyphicon glyphicon-share-alt"></i> 转发 <em>{{article.copyNum}}</em></a>
+            <a class="col-xs-3 color_gray" href="javascript:void(0)" ng-click="showComments($event,article)"><i class="glyphicon glyphicon-comment"></i> 评论 <em>{{article.commentNum}}</em></a>
+            <a class="col-xs-3 color_gray" href="javascript:void(0)" ng-click="likeArticle(article)"><i class="glyphicon glyphicon-thumbs-up"></i> 点赞 <em>{{article.likeNum}}</em></a>
+        </div>
+        <div style="display: none;" class="col-xs-12 comment_content padding_top">
+            <div ng-show="comments[article._id]" class="panel panel-default margin_bottom">
+                <div class="panel-body row" ng-repeat="comment in comments[article._id]">
+                    <div class="col-xs-2 text-center">
+                        <img class="img-circle commenter_logo" ng-src="{{comment.commenterLogo}}" alt="">
+                    </div>
+                    <div class="col-xs-10">
+                        <p class="margin_bottom"><a href="/users?username={{comment.commenter}}">{{comment.commenter}}</a></p>
+                        <p class="margin_bottom"><em am-time-ago="comment.commentTime"></em></p>
+                        <p class="margin_bottom" ng-bind-html="comment.comment | to_trusted "></p>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-2" ng-repeat="answer in comment.answers">
+                        <p>{{answer.answer}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default margin_bottom">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="commentForm" ng-submit="commentArticle(commentForm.$valid,article)" novalidate>
+                        <div class="form-group padding_top">
+                            <label class="col-xs-2 control-label text-right comment_user_label"><img class="img-rounded comment_user_logo" ng-src="{{user.logo || '/upload/users/logos/timg.png'}}"></label>
+                            <div class="col-xs-9">
+                                <input type="text" class="form-control" name="comment" ng-model="commentFormData.comment" placeholder="评论一下吧" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-11 text-right">
+                                <input type="checkbox" name="copySame" ng-model="commentFormData.copySame">同时转发
+                                <input type="submit" class="btn btn-warning" ng-disabled="commentForm.$invalid" value="评论">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-right margin_bottom margin_right"><i class="glyphicon glyphicon-chevron-up"></i><a href="javascript:void(0)" ng-click="hideComments($event,article)">收起</a></p>
+        </div>
+    </div>
+</section>
+    <!--分页模块-->
+    <!--<section class="main_article box_shadow" ng-cloak>
+        <div class="row padding">
+            <div class="col-md-6 text-right">
+                <p>选择块</p>
+            </div>
+            <div class="col-md-6 text-left">
+                <p>下一页</p>
+            </div>
+        </div>
+    </section>-->
+</section>

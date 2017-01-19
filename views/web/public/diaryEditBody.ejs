@@ -1,0 +1,118 @@
+<div class="container reg_container margin_bottom" ng-app="editInfoApp">
+  <h1 class="title">COLOO:个人信息</h1>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 reg_content" ng-controller="editInfoCtrl">
+      <form class="form-horizontal" name="editForm" ng-submit="processEditForm(editForm.$valid)" novalidate>
+        <!--错误信息提示-->
+        <p class="text-center text-danger" id="errorInfo">{{regErrors}}</p>
+        <!--用户名-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.username.$invalid && !editForm.username.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 用户名5-12个英文数字组合</p>
+        <div class="form-group">
+          <label for="inputUsername" class="col-sm-2 col-sm-offset-1 control-label">用户名:</label>
+          <div class="col-sm-6">
+            <input type="text" name="username" class="form-control" id="inputUsername" ng-minlength="5" ng-maxlength="12" ng-model="editFormData.username" ng-pattern="/^[a-zA-Z][a-zA-Z0-9_]{4,11}$/" ng-disabled="!canEdit" placeholder="请输入用户名" required>
+          </div>
+        </div>
+          <!--用户姓名-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.name.$invalid && !editForm.name.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入用户真实姓名</p>
+        <div class="form-group">
+           <label for="inputName" class="col-sm-2 col-sm-offset-1 control-label">用户姓名:</label>
+           <div class="col-sm-6">
+              <input type="text" name="name" class="form-control" id="inputName" ng-minlength="1" ng-maxlength="12" ng-model="editFormData.name" ng-disabled="!canEdit" placeholder="请输入用户姓名">
+           </div>
+        </div>
+        <!--性别-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.gender.$invalid && !editForm.gender.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请选择性别</p>
+        <div class="form-group">
+          <label for="inputEmail" class="col-sm-2 col-sm-offset-1 control-label">性别:</label>
+          <div class="col-sm-6">
+            <select class="form-control" ng-model="editFormData.gender" ng-disabled="!canEdit" >
+                <option ng-show="gender" value="{{editFormData.gender}}" selected>{{editFormData.gender}}</option>
+              <option value="男">男</option>
+              <option value="女">女</option>
+            </select>
+          </div>
+        </div>
+        <!--年龄-->
+          <p class="text-center text-danger" ng-cloak ng-show="editForm.year.$invalid && !editForm.year.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写自己的年龄</p>
+        <div class="form-group">
+          <label for="inputyear" class="col-sm-2 col-sm-offset-1 control-label">年龄:</label>
+          <div class="col-sm-6">
+            <input type="text" name="year" class="form-control" id="inputyear" ng-model="editFormData.year" ng-pattern="/^[1-9][0-9]$/" ng-disabled="!canEdit"  placeholder="请输入真实年龄">
+          </div>
+        </div>
+        <!--登录邮箱-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.email.$invalid && !editForm.email.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写正确的邮箱地址</p>
+        <div class="form-group">
+          <label for="inputEmail" class="col-sm-2 col-sm-offset-1 control-label">登录邮箱:</label>
+          <div class="col-sm-6">
+            <input type="email" name="email" class="form-control" id="inputEmail" ng-model="editFormData.email" ng-pattern="/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/" disabled  placeholder="请输入邮箱">
+          </div>
+        </div>
+
+        <!--QQ-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.qq.$invalid && !editForm.qq.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写正确的qq号码</p>
+        <div class="form-group">
+          <label for="inputQq" class="col-sm-2 col-sm-offset-1 control-label">QQ:</label>
+          <div class="col-sm-6">
+            <input type="text" name="qq" class="form-control" id="inputQq" ng-model="editFormData.qq" ng-pattern="/^[1-9][0-9]{5,12}$/" ng-disabled="!canEdit"  placeholder="请输入qq号码">
+          </div>
+        </div>
+        <!--手机号码-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.phoneNum.$invalid && !editForm.phoneNum.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写正确的手机号</p>
+        <div class="form-group">
+          <label for="inputPhoneNum" class="col-sm-2 col-sm-offset-1 control-label">手机号码:</label>
+          <div class="col-sm-6">
+            <input type="text" name="phoneNum" class="form-control" id="inputPhoneNum" ng-model="editFormData.phoneNum" ng-pattern="/^1[35][0-9]{9}$/" ng-disabled="!canEdit"  placeholder="请输入手机号">
+          </div>
+        </div>
+        <!--个性签名-->
+        <div class="form-group">
+          <label for="inputContent" class="col-sm-2 col-sm-offset-1 control-label">个性签名:</label>
+          <div class="col-sm-6">
+            <textarea name="comments" class="form-control" id="inputContent" rows="3" ng-model="editFormData.comments" ng-disabled="!canEdit"  placeholder="介绍下你自己吧"></textarea>
+          </div>
+        </div>
+        <!--公司-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.company.$invalid && !editForm.company.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写公司地址</p>
+        <div class="form-group">
+          <label for="inputCompany" class="col-sm-2 col-sm-offset-1 control-label">公司:</label>
+          <div class="col-sm-6">
+            <input type="text" name="company" class="form-control" id="inputCompany" ng-model="editFormData.company" ng-disabled="!canEdit"  placeholder="请输入公司名称">
+          </div>
+        </div>
+        <!--网址-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.website.$invalid && !editForm.website.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写网址</p>
+        <div class="form-group">
+          <label for="inputWebsite" class="col-sm-2 col-sm-offset-1 control-label">网址:</label>
+          <div class="col-sm-6">
+            <input type="text" name="website" class="form-control" id="inputWebsite" ng-model="editFormData.website" ng-pattern="/^(www\.)?([a-zA-Z0-9]+\/?)+\.[a-zA-Z]+$/" ng-disabled="!canEdit"  placeholder="请输入网址">
+          </div>
+        </div>
+        <!--注册时间-->
+        <div class="form-group">
+          <label for="" class="col-sm-2 col-sm-offset-1 control-label">注册时间:</label>
+          <div class="col-sm-6">
+            <input type="text" name="date" class="form-control" ng-model="editFormData.date" disabled placeholder="注册时间">
+          </div>
+        </div>
+        <!--城市-->
+        <p class="text-center text-danger" ng-cloak ng-show="editForm.city.$invalid && !editForm.city.$pristine"><i class="glyphicon glyphicon-info-sign"></i> 请填写所在城市</p>
+        <div class="form-group">
+          <label for="inputCity" class="col-sm-2 col-sm-offset-1 control-label">城市:</label>
+          <div class="col-sm-6">
+            <input type="text" name="city" class="form-control" id="inputCity" ng-model="editFormData.city" ng-disabled="!canEdit"  placeholder="请填写城市地址">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center col-sm-offset-3 col-sm-1 col-xs-6">
+            <button type="submit" class="btn btn-default" ng-disabled="editForm.$invalid || !canEdit">保存</button>
+          </div>
+          <div class="text-center col-sm-1 col-xs-6">
+            <button type="button" class="btn btn-danger" ng-click="edit()">修改</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="padding recentArticle box_shadow_top" ng-controller="recentArticlesCtrl">
+    <h4 class="margin_bottom">COLOO:最近动态</h4>
+    <p class="margin_bottom nowrap" ng-repeat="recentArticle in recentArticles">
+        <a href="/users?username={{recentArticle.author}}">{{recentArticle.author}}</a>发布了
+        <a href="javascript:void(0)" ng-click="getArticles(recentArticle.type)">{{recentArticle.type}}</a>:
+        <a href="/articleInfo?article_id={{recentArticle._id}}" ng-show="recentArticle.title">{{recentArticle.title}}</a>
+        <a  href="/articleInfo?article_id={{recentArticle._id}}" ng-hide="recentArticle.title" >{{recentArticle.content}}</a>
+    </p>
+</div>

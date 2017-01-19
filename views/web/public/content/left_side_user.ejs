@@ -1,0 +1,20 @@
+<ul class="list_left" ng-controller="userLeftCtrl">
+    <li><a class="active" ng-class="{true:'active'}[isIndex]" href="/">首页</a></li>
+    <% if(user && (user.username === author.username)) { %>
+        <li><a href="javascript:void(0)" ng-class="{true:'active'}[isTalking]" ng-mousedown="isTalking=true;isIndex=false;isDiary=false;doLogout=false;" ng-click="getArticles('<%= user.username %>','说说')">我的说说</a></li>
+        <li><a href="javascript:void(0)" ng-class="{true:'active'}[isDiary]" ng-mousedown="isDiary=true;isIndex=false;isTalking=false;doLogout=false;" ng-click="getArticles('<%= user.username %>','日志')">我的日志</a></li>
+        <li><a href="/users/userInfo">个人信息</a></li>
+        <li><a href="/postDiary">发布</a></li>
+        <li><a href="javascript:void(0);" ng-class="{true:'active'}[doLogout]" ng-mousedown="doLogout=true;isIndex=false;isTalking=false;isDiary=false;" ng-click="logout()">退出</a></li>
+    <% } else { %>
+        <li><a href="javascript:void(0)" ng-class="{true:'active'}[isTalking]" ng-mousedown="isTalking=true;isIndex=false;doLogin=false;isDiary=false;doLogout=false;doReg=false" ng-click="getArticles('<%= author.username %>','说说')">他的说说</a></li>
+        <li><a href="javascript:void(0)" ng-class="{true:'active'}[isDiary]" ng-mousedown="isDiary=true;isIndex=false;isTalking=false;doLogin=false;doLogout=false;doReg=false" ng-click="getArticles('<%= author.username %>','日志')">他的日志</a></li>
+        <% if(user) { %>
+            <li><a href="/users?username=<%= user.username %>">个人中心</a></li>
+            <li><a href="javascript:void(0);" ng-class="{true:'active'}[doLogout]" ng-mousedown="doLogout=true;isIndex=false;isTalking=false;isDiary=false;" ng-click="logout()">退出</a></li>
+        <% } else {%>
+            <li><a href="javascript:void(0);" ng-class="{true:'active'}[doLogin]" ng-mousedown="doLogin=true;isIndex=false;isTalking=false;isDiary=false;doLogout=false;doReg=false" data-toggle="modal" data-target="#loginModal">登录</a></li>
+            <li><a href="javascript:void(0);" ng-class="{true:'active'}[doReg]" ng-mousedown="doReg=true;isIndex=false;isTalking=false;isDiary=false;doLogout=false;doLogin=false" ng-click="register()">注册</a></li>
+        <% } %>
+    <% } %>
+</ul>

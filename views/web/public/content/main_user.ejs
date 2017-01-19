@@ -1,0 +1,17 @@
+
+        <% include main.ejs %>
+        <section ng-show="!articles.length " class="talking_post" ng-controller="userTalkingPostCtrl">
+            <p class="margin_top">你还没有发表任何说说和文章呢</p>
+            <form name="talkingPost" ng-submit="processUserTalkingPost(talkingPost.$valid)" novalidate >
+                <div class="error_message"><p class="text-danger" ng-cloak ng-show="talkingPost.talking.$invalid && !talkingPost.talking.$pristine"><i class="glyphicon glyphicon-info-sign"></i>请输入合适长度说说内容，长度为6-100</p></div>
+                <textarea class="form-control talking_textarea" name="talking" ng-model="talkingUserPostData.talking" ng-minlength="6" ng-maxlength="100" rows="4" required placeholder="请输入说说内容"></textarea>
+
+                <div class="form-group text-right">
+                    <select class="margin_top" ng-model="talkingUserPostData.state" >
+                        <option ng-show="tclick" value="{{talkingUserPostData.state}}" checked="checked">公开</option>
+                        <option ng-repeat="state in states" value="{{state.type}}">{{state.value}}</option>
+                    </select>
+                    <input type="submit" class="btn btn-warning margin_top" ng-cloak ng-disabled="talkingPost.$invalid" value="发布">
+                </div>
+            </form>
+        </section>
